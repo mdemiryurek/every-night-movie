@@ -1,0 +1,16 @@
+@import "../../styles/variables";
+@import "../../styles/font";
+@import "../../styles/mixins";
+
+.list{
+    display: grid;
+    gap: $space-6;
+
+    @include bp-desktop {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
+
+    @include bp-mobile {
+        grid-template-columns: 1fr 1fr;
+    }
+}

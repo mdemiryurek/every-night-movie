@@ -1,0 +1,37 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+@import "../../styles/font";
+
+.footer{
+    @include flexbox();
+    @include justify-content(space-between);
+    width: 100%;
+    margin: auto 0 0 0;
+    background-color: $color-white;
+    border-top: 1px solid $color-grey-light;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: $main-container-width;
+    margin: auto;
+    padding: $space-6;
+}
+
+.label{
+    @include font-size($font-size-s);
+    color: $color-grey;
+    margin-right: $space-base;
+}
+
+@include bp-mobile{
+    .footer{
+        display: block;
+    }
+
+    .label{
+        display: block;
+        margin-bottom: $space-base;
+        
+    }
+}

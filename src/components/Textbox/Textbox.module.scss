@@ -1,0 +1,91 @@
+@import "../../styles/variables";
+@import "../../styles/font";
+@import "../../styles/mixins";
+
+.container{
+    position: relative;
+}
+
+.field {
+    width: 100%;
+    @include font-regular();
+    @include font-size($font-size-m);
+    padding: $space-base;
+    height: 40px;
+}
+
+.title{
+    width: 100%;
+    margin-bottom: $space-3;
+    display: block;
+}
+
+.default{
+    .field{
+        color: $color-primary;
+        background: $color-white;
+        border: 1px solid $color-grey-light;
+
+        &:focus{
+            border: 2px solid $color-primary;
+            outline: none;
+        }
+    }
+
+    .title{
+        color: $color-primary;
+    }
+}
+
+.secondary{
+    .field{
+        border: none;
+        color: $color-primary;
+        background: $color-white;
+        border: 2px solid $color-white;
+
+        &::placeholder{
+            color: $color-grey;
+        }
+
+        &:focus{
+            background-color: $color-white;
+            outline: none;
+            border: 2px solid $color-grey-light;
+        }
+    }
+
+    .title{
+        color: $color-white;
+    }
+}
+
+.invalid{
+    .field {
+        border-color: $color-red;
+    }
+
+    p{
+        color: $color-red;
+        display: block;
+        margin: $space-3 0;
+    }
+}
+
+.search{
+    position: absolute;
+    left: $space-base;
+    top: $space-base;
+    color: $color-grey;
+
+    + .field{
+        padding-left: $space-7;
+    }
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  -webkit-appearance:none;
+}

@@ -1,0 +1,24 @@
+@use "sass:map";
+@import "./reset";
+@import "./variables";
+@import "./font";
+@import "./typography";
+@import "./mixins";
+
+.visually-hidden {
+    @extend %visuallyhidden;
+}
+
+$font-sizes: ("small": $font-size-s, "medium": $font-size-m, "large": $font-size-l, "x-large": $font-size-xl, "xx-large": $font-size-xxl, "huge": $font-size-huge);
+@each $name, $size in $font-sizes{
+  .fs-#{$name} {
+    @include font-size($size);
+  }
+}
+
+$colours: ("primary": $color-primary, "secondary": $color-secondary, "grey": $color-grey, "grey-light": $color-grey-light, "white": $color-white, "purple": $color-purple);
+@each $name, $color in $colours{
+  .fc-#{$name} {
+    color: $color;
+  }
+}

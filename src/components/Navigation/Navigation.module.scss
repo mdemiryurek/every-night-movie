@@ -1,0 +1,186 @@
+@import "../../styles/variables";
+@import "../../styles/font";
+@import "../../styles/mixins";
+
+.navigation{
+    @include flexbox();
+    height: 80px;
+
+    @include bp-mobile {
+        display: none;
+        left: -100%;
+        height: auto;
+    }
+    ul{
+        display: inline-flex;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    li{
+        display: block;
+        @include transition(all 0.5s);
+        position: relative;
+
+        @include bp-desktop {
+            &:hover{
+                > ul{
+                    visibility: visible;
+                    @include opacity(1);
+                    display: block;
+                }
+            }
+        }
+        
+        ul{
+            visibility: hidden;
+            @include opacity(0);
+            position: absolute;
+            @include transition(all 0.5s ease);
+            padding: $space-base 0;
+            right: -220px;
+            display: none;
+            width: 600px;
+            height: auto;
+            background-color: $color-red;
+            box-shadow: 0 10px 27px rgba(0, 0, 0, 0.30);
+            z-index: 2;
+
+            @include bp-desktop {
+                &:before{
+                    content: ' ';
+                    width: 0; 
+                    height: 0; 
+                    border-left: 10px solid transparent;
+                    border-right: 10px solid transparent;
+                    border-bottom: 10px solid $color-red;
+                    position: absolute;
+                    top: -10px;
+                    left: 0;
+                    right: 0;
+                    margin: auto;
+                }
+            }
+
+            li{
+                clear: both;
+                width: 100%;
+                max-width: 33%;
+                @include inline-flex();
+                color: $color-white;
+                margin: $space-base 0;
+
+                a:hover{
+                    text-decoration: underline;
+                    background-color: transparent;
+                    color: $color-white;
+                }
+            }
+
+            @include bp-mobile {
+                &.subActive{
+                    visibility: visible;
+                    @include opacity(1);
+                    display: block;
+                    background-color: $color-grey;
+                    position: relative;
+                    width: 100%;
+                    z-index: 0;
+                    right: 0;
+                    padding: 0;
+                    
+                    li {
+                        max-width: none;
+                        margin: 0;
+
+                        a {
+                            padding: $space-base;
+                            margin: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    a{
+        @include font-regular();
+        @include font-size($font-size-m);
+        color: $color-white;
+        padding: 0 $space-5;
+        margin: 0 $space-base;
+        @include flexbox();
+        @include align-items(center);
+        text-decoration: none;
+        @include transition(color 0.5s, background-color 0.5s, padding 0.5s);
+        height: 100%;
+        width: 100%;
+
+        &:hover{
+            color: $color-grey;
+            background-color: $color-primary;
+        }
+    }
+}
+
+.menu{
+    display: none;
+    border: 0;
+    padding: 0;
+    background: transparent;
+
+    @include bp-mobile {
+        display: block;
+        cursor: pointer;
+    }
+}
+
+.bar{
+    display: block;
+    width: 35px;
+    height: 3px;
+    margin: 8px auto;
+    @include transition(all 0.3s ease-in-out);
+    background-color: $color-white;
+}
+
+@include bp-mobile {
+    .active{
+        &.navigation{
+            display: block;
+            background-color: $color-primary;
+            box-shadow: 0 10px 27px rgba(0, 0, 0, 0.30);
+            width: 100%;
+
+            > ul{
+                display: block;
+
+                a{
+                    margin: 0;
+                    padding: $space-6 0;
+
+                    &:hover{
+                        color: $color-white;
+                        padding-left: $space-base;
+                    }
+                }
+            }
+        }
+
+        &.menu{
+            .bar{
+                &:nth-child(2) {
+                    @include opacity(0);
+                }
+            
+                &:nth-child(1) {
+                    transform: translateY(13px) rotate(45deg);
+                }
+            
+                &:nth-child(3) {
+                    transform: translateY(-8px) rotate(-45deg);
+                }
+            }
+        }
+    }
+}
+

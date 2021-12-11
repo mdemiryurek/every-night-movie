@@ -1,0 +1,8 @@
+@import "../../styles/variables";
+
+.box {
+    border-radius: 8px;
+    box-shadow: 0 5px 11px rgb(0 0 0 / 7%);
+    padding: $space-5;
+    border: 1px solid $color-grey-light;
+}
